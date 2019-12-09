@@ -5,7 +5,8 @@ export  enum Consts{
     SoundMute="SoundMute",
 
 
-    TTT="301"
+    REQ_TTT="301",
+    RESP_TTT="301"
 }
 export  enum TTTTT{
     SoundVol,

@@ -62,8 +62,11 @@ export class websocket extends EventTool{
             }
         }
     }
-    public send(data){
-
+    public send(e:string,data:any){
+          this.ws.send(JSON.stringify({code:e,data:data}));
+    }
+    public sendNative(data:any){
+        this.ws.send(data);
     }
     public addListener(event:string,fun:handler){
         this.addEventListener(event,(...params)=>{
