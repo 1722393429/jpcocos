@@ -155,7 +155,7 @@ class MyEventListeners
 export class event_mgr
 {
     private static inst:event_mgr;
-    private eventMap:Map<Event_Name, MyEventListeners>;
+    private eventMap:Map<string, MyEventListeners>;
 
     private constructor()
     {
@@ -170,7 +170,7 @@ export class event_mgr
         return this.inst;
     }
 
-    fire(event:Event_Name, ...params)
+    fire(event:string, ...params)
     {
         // EventHelper.log(`EventMgr`, `fire event ${event}`);
         const listeners = this.eventMap.get(event);
@@ -232,7 +232,7 @@ export class event_mgr
         }
     }
 
-    add(event:Event_Name, handler:MyEvnetHandler, target = null)
+    add(event:string, handler:MyEvnetHandler, target = null)
     {
         // EventHelper.log(`EventMgr`, `add, event = ${event}`);
         let listeners = this.eventMap.get(event);
@@ -254,7 +254,7 @@ export class event_mgr
         this.add(event, wrapperCb, target);
     }
 
-    remove(event:Event_Name, handler:MyEvnetHandler, target = null)
+    remove(event:string, handler:MyEvnetHandler, target = null)
     {
         const listeners = this.eventMap.get(event);
         if(!listeners || listeners.isEmpty()) {

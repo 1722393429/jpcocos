@@ -2,13 +2,13 @@ import { Event_Name, MyEvnetHandler, event_mgr } from "../event/event_mgr";
 
 export class EventTool
 {
-    private _eventListeners:{event:Event_Name, handler:MyEvnetHandler}[];
+    private _eventListeners:{event:string, handler:MyEvnetHandler}[];
 
     constructor()
     {
     }
 
-    protected addEventListener(event:Event_Name, handler:MyEvnetHandler)
+    protected addEventListener(event:string, handler:MyEvnetHandler)
     {
         event_mgr.get_inst().add(event, handler, this);
         if(!this._eventListeners) {
@@ -17,12 +17,12 @@ export class EventTool
         this._eventListeners.push({event, handler});
     }
 
-    protected removeEventListener(event:Event_Name, handler:MyEvnetHandler)
+    protected removeEventListener(event:string, handler:MyEvnetHandler)
     {
         event_mgr.get_inst().remove(event, handler, this);
     }
 
-    protected fireEvent(event:Event_Name, ...params)
+    protected fireEvent(event:string, ...params)
     {
         event_mgr.get_inst().fire(event, ...params);
     }
