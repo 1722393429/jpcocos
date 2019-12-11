@@ -18,8 +18,8 @@ cc.Class({
 
         //console.log(Consts.TTT); console.log(Constsx.TTT);
         cc.jp.ws.addListener(Consts.RESP_TTT,gen_handler((d)=>{
-           // cc.jp.ws.sendNative(JSON.stringify({code:101,nick:"xxx"}));
-            cc.jp.ws.send(101,{nick:"x"});
+           cc.jp.ws.sendNative(JSON.stringify({code:101,nick:"xxx"}));
+           // cc.jp.ws.send(101,{nick:"x"});
         }));
         cc.jp.ws.connect();
     },
