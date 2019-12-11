@@ -3776,7 +3776,7 @@ declare namespace cc {
 		2. showFPS<br/>
 		     Left bottom corner fps information will show when "showFPS" equals true, otherwise it will be hide.<br/>
 		3. exposeClassName<br/>
-		     Expose class name to chrome debug tools, the class intantiate performance is a little bit slower when exposed.<br/>
+		     Expose class name to chrome debugEnable tools, the class intantiate performance is a little bit slower when exposed.<br/>
 		4. frameRate<br/>
 		     "frameRate" set the wanted frame rate for your game, but the real fps depends on your game implementation and the running environment.<br/>
 		5. id<br/>
@@ -3792,7 +3792,7 @@ declare namespace cc {
 		Please DO NOT modify this object directly, it won't have any effect.<br/>
 		!#zh
 		当前的游戏配置，包括：                                                                  <br/>
-		1. debugMode（debug 模式，但是在浏览器中这个选项会被忽略）                                <br/>
+		1. debugMode（debugEnable 模式，但是在浏览器中这个选项会被忽略）                                <br/>
 		     "debugMode" 各种设置选项的意义。                                                   <br/>
 		         0 - 没有消息被打印出来。                                                       <br/>
 		         1 - cc.error，cc.assert，cc.warn，cc.log 将打印在 console 中。                  <br/>
@@ -8646,7 +8646,7 @@ declare namespace cc {
 	}	
 	/** !#en
 	Physics manager uses box2d as the inner physics system, and hide most box2d implement details(creating rigidbody, synchronize rigidbody info to node).
-	You can visit some common box2d function through physics manager(hit testing, raycast, debug info).
+	You can visit some common box2d function through physics manager(hit testing, raycast, debugEnable info).
 	Physics manager distributes the collision information to each collision callback when collision is produced.
 	Note: You need first enable the collision listener in the rigidbody.
 	!#zh
@@ -8656,7 +8656,7 @@ declare namespace cc {
 	注意：你需要先在刚体中开启碰撞接听才会产生相应的碰撞回调。 */
 	export class PhysicsManager implements EventTarget {		
 		/** !#en
-		The draw bits for drawing physics debug information.
+		The draw bits for drawing physics debugEnable information.
 		!#zh
 		指定物理系统需要绘制哪些调试信息。 */
 		static DrawBits: DrawBits;		
@@ -13627,11 +13627,11 @@ declare namespace cc {
 	}
 		
 	/****************************************************
-	* debug
+	* debugEnable
 	*****************************************************/
 	
 	export namespace debug {		
-		/** !#en Enum for debug modes.
+		/** !#en Enum for debugEnable modes.
 		!#zh 调试模式 */
 		export enum DebugMode {			
 			NONE = 0,
@@ -16364,8 +16364,8 @@ declare namespace dragonBones {
 		!#zh 是否启用贴图预乘。
 		当图片的透明区域出现色块时需要关闭该选项，当图片的半透明区域颜色变黑时需要启用该选项。 */
 		premultipliedAlpha: boolean;		
-		/** !#en Indicates whether open debug bones.
-		!#zh 是否显示 bone 的 debug 信息。 */
+		/** !#en Indicates whether open debugEnable bones.
+		!#zh 是否显示 bone 的 debugEnable 信息。 */
 		debugBones: boolean;		
 		/** !#en Enabled batch model, if skeleton is complex, do not enable batch, or will lower performance.
 		!#zh 开启合批，如果渲染大量相同纹理，且结构简单的骨骼动画，开启合批可以降低drawcall，否则请不要开启，cpu消耗会上升。 */
@@ -16608,11 +16608,11 @@ declare namespace sp {
 		/** !#en The time scale of this skeleton.
 		!#zh 当前骨骼中所有动画的时间缩放率。 */
 		timeScale: number;		
-		/** !#en Indicates whether open debug slots.
-		!#zh 是否显示 slot 的 debug 信息。 */
+		/** !#en Indicates whether open debugEnable slots.
+		!#zh 是否显示 slot 的 debugEnable 信息。 */
 		debugSlots: boolean;		
-		/** !#en Indicates whether open debug bones.
-		!#zh 是否显示 bone 的 debug 信息。 */
+		/** !#en Indicates whether open debugEnable bones.
+		!#zh 是否显示 bone 的 debugEnable 信息。 */
 		debugBones: boolean;		
 		/** !#en Enabled two color tint.
 		!#zh 是否启用染色效果。 */
@@ -21585,7 +21585,7 @@ declare namespace dragonBones {
         private _kX;
         private _kY;
         /**
-         * For debug draw.
+         * For debugEnable draw.
          * @internal
          * @private
          */
@@ -25071,7 +25071,7 @@ declare let CC_EDITOR: boolean;
 declare let CC_PREVIEW: boolean;
 /** Running in the editor or preview. */
 declare let CC_DEV: boolean;
-/** Running in the editor or preview, or build in debug mode. */
+/** Running in the editor or preview, or build in debugEnable mode. */
 declare let CC_DEBUG: boolean;
 /** Running in published project. */
 declare let CC_BUILD: boolean;

@@ -255,10 +255,10 @@ export class pop_mgr
 
     private _debugOverlay(viewRoot:cc.Node, overlayNode:cc.Node)
     {
-        cc.log("---------debug viewtree start-----------");
+        cc.log("---------debugEnable viewtree start-----------");
         viewRoot.children.forEach(c => cc.log(c.name + "\n"));
         cc.log(`overlay opcaity=${overlayNode.opacity}`);
-        cc.log("---------debug viewtree end-----------");
+        cc.log("---------debugEnable viewtree end-----------");
     }
 }
 

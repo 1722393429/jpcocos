@@ -1,13 +1,15 @@
 import { handler } from "../util";
-import {debug} from "../../const";
+import {debugEnable} from "../../const";
 import {EventTool} from "../event/event_tool";
 import isNumber = cc.js.isNumber;
-export class websocket extends EventTool{
+
+ export class websocket extends EventTool{
     private ws:WebSocket;
     private hostport:string;
     private ssl:boolean = false;
     private cb?:Function;
 
+    private url;
     constructor()
     {
         super();
@@ -21,36 +23,38 @@ export class websocket extends EventTool{
             }
         }
         this.cb=cc.bind(this);
+        this.url= prot+host;
 
-        this.ws = new WebSocket(prot+host);
+
+        return this;
+    };
+    public connect(){
+        this.ws = new WebSocket(this.url);
         this.ws.onopen = this.onopen.bind(this);
         this.ws.onmessage = this.onmessage.bind(this);
         this.ws.onerror =this.onerror.bind(this);
         this.ws.onclose =this.onclose.bind(this);
-
-        return this;
-    };
+    }
     protected onopen(e){
-        if(debug){
+        if(debugEnable){
             cc.log("response onopen msg: ",e);
         }
         if (this.cb){this.cb();}
      }
 
     protected onerror(e){
-            if(debug){
+            if(debugEnable){
                 cc.log("WebSocket instance wasn't ready...");
             }
     }
     protected onclose(e){
-        if(debug){ cc.log("response onclose msg: " + e);  }
+        if(debugEnable){ cc.log("response onclose msg: " + e);  }
     }
     protected onmessage(e){
         let jdata=JSON.parse(e.data);
+        cc.jpn.jlog("response msg ",jdata);
         if(jdata.code){
-            if(debug){
-                cc.log("response text msg: " ,jdata);
-            }
+
             var e= jdata.code;
             if(isNumber(e)){
                 e= e+"";

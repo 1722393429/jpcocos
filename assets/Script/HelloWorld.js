@@ -1,7 +1,5 @@
-import {websocket} from "./base/network/websockt";
 import {gen_handler} from "./base/util";
-import {Consts} from "./const";
-
+import {Consts, nethost} from "./const";
 cc.Class({
     extends: cc.Component,
 
@@ -16,15 +14,14 @@ cc.Class({
 
     // use this for initialization
     onLoad: function () {
-        this.label.string =this.text;
-        let c =  (new websocket).init("localhost:4006",gen_handler((ws)=>{
-            cc.log("连接成功");
-        }));
+        this.label.string ="xxxxxxx";
+
         //console.log(Consts.TTT); console.log(Constsx.TTT);
-        c.addListener(Consts.TTT,gen_handler((d)=>{
-           //c.sendNative(JSON.stringify({code:101,nick:"xxx"}));
-            c.send(101,{nick:"x"});
+        cc.jp.ws.addListener(Consts.RESP_TTT,gen_handler((d)=>{
+           // cc.jp.ws.sendNative(JSON.stringify({code:101,nick:"xxx"}));
+            cc.jp.ws.send(101,{nick:"x"});
         }));
+        cc.jp.ws.connect();
     },
 
     // called every frame

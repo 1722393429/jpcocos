@@ -5,7 +5,7 @@ export  enum Consts{
     SoundMute="SoundMute",
 
 
-    REQ_TTT="301",
+    REQ_TTT="101",
     RESP_TTT="301"
 }
 export  enum TTTTT{
@@ -14,4 +14,5 @@ export  enum TTTTT{
     SoundMute,
     TTT
 }
-export const debug=true;
+export const debugEnable=true;
+export var nethost="localhost:4006";
