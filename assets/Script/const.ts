@@ -15,4 +15,4 @@ export  enum TTTTT{
     TTT
 }
 export const debugEnable=true;
-export var nethost="localhost:4006";
+export var nethost="localhost:8889";
