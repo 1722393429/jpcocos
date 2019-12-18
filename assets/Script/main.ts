@@ -22,9 +22,9 @@ class start {
 
     //初始化
     private i() {
-        cc.jp.ws = (new websocket).init(nethost, gen_handler((ws) => {
-            cc.jpn.jlog("连接成功" + nethost);
-        }));
+        cc.jp.ws = (new websocket).init(nethost, gen_handler((ws:websocket) => {
+            cc.jpn.jlog("连接成功" + nethost,this);
+        },cc));
     }
 }
 

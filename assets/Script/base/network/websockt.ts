@@ -22,10 +22,11 @@ export class websocket extends EventTool {
         if (!host) {
             host = this.hostport;
         }
+        let that=this;
         function cc() {
             if (this.ws.readyState === WebSocket.OPEN) {
                 if (connected) {
-                    connected.exec(this.ws);
+                    connected.exec(that);
                 }
                 ;
             }
@@ -108,9 +109,10 @@ export class websocket extends EventTool {
     }
 
     public addListener(event: string, fun: handler) {
-        this.addEventListener(event, (...params) => {
-            fun.exec(params);
-        });
+        let v=function(...params) {
+             fun.exec(params);
+         };
+        this.addEventListener(event, v);
     }
     private str2ab(str) {
          var buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
@@ -138,8 +140,50 @@ export class websocket extends EventTool {
 
         return ab;
     }
+    // private Uint8ArrayToString(fileData){
+    //     var dataString = "";
+    //     for (var i = 0; i < fileData.length; i++) {
+    //         dataString += String.fromCharCode(fileData[i]);
+    //     }
+    //
+    //     return dataString
+    // }
     private decode(d:ArrayBuffer){
         var dv= new DataView(d);
-         return String.fromCharCode.apply(null, new Uint8Array(d.slice(2)));
+        return this.Utf8ArrayToStr( new Uint8Array(d.slice(2)));
+        // return String.fromCharCode.apply(null, new Uint8Array(d.slice(2)));
+    }
+    private Utf8ArrayToStr(array) {
+        var out, i, len, c;
+        var char2, char3;
+
+        out = "";
+        len = array.length;
+        i = 0;
+        while(i < len) {
+            c = array[i++];
+            switch(c >> 4)
+            {
+                case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:
+// 0xxxxxxx
+                out += String.fromCharCode(c);
+                break;
+                case 12: case 13:
+// 110x xxxx 10xx xxxx
+                char2 = array[i++];
+                out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));
+                break;
+                case 14:
+// 1110 xxxx 10xx xxxx 10xx xxxx
+                    char2 = array[i++];
+                    char3 = array[i++];
+                    out += String.fromCharCode(((c & 0x0F) << 12) |
+                        ((char2 & 0x3F) << 6) |
+                        ((char3 & 0x3F) << 0));
+                    break;
+            }
+        }
+
+        return out;
     }
 }

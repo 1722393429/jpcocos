@@ -6,7 +6,8 @@ export  enum Consts{
 
 
     REQ_TTT="101",
-    RESP_TTT="301"
+    RESP_TTT="1000",
+    RESP_TTTT="1"
 }
 export  enum TTTTT{
     SoundVol,
@@ -15,4 +16,4 @@ export  enum TTTTT{
     TTT
 }
 export const debugEnable=true;
-export var nethost="localhost:8889";
+export var nethost="10.10.16.78:8889";

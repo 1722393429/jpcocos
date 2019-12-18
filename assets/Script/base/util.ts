@@ -5,7 +5,7 @@ let handler_pool_size = 10;
 export class handler
 {
     private cb:Function;
-    private host:any;
+    public host:any;
     private args:any[];
 
     constructor(){}
@@ -19,7 +19,7 @@ export class handler
 
     exec(...extras)
     {
-        this.cb.apply(this.host, this.args.concat(extras));
+         this.cb.apply(this.host, this.args.concat(extras));
     }
 }
 
